@@ -15,9 +15,9 @@ namespace Input
 
         private IInput inputData;
         [Inject]
-        public void Init(IInput x)
+        public void Init(IInput _inputData)
         {
-            inputData = x;
+            inputData = _inputData;
         }
         void Start()
         {
@@ -46,15 +46,15 @@ namespace Input
         {
             scale = transform.localScale;
             pos = cameraComponent.WorldToScreenPoint(gameObject.transform.position);
-            if (inputData.Updata().MousePosition.x > pos.x && scale.x == -1) { Flip(); }
-            if (inputData.Updata().MousePosition.x < pos.x && scale.x == 1) { Flip(); }
+            if (inputData.Updata().MousePosition.x > pos.x && scale.x <= -0) { Flip(); }
+            if (inputData.Updata().MousePosition.x < pos.x && scale.x >= 0) { Flip(); }
 
             currentMousePosition = (Vector2)inputData.Updata().MousePosition;
             worldMousePosition = cameraComponent.ScreenToWorldPoint(currentMousePosition);
             direction = worldMousePosition - gameObject.transform.position;
             angle = Vector2.SignedAngle(Vector2.right, direction);
 
-            if (scale.x == -1)
+            if (scale.x <= -0)
             {
                 if (angle >= 90 && angle <= 180) { angle = 180 - angle; }
                 if (angle <= -90 && angle >= -180) { angle = -180 - angle; }
@@ -64,7 +64,7 @@ namespace Input
                 childGameObject.transform.eulerAngles = new Vector3(0, 0, -angle);
 
             }
-            if (scale.x == 1)
+            if (scale.x >= 0)
             {
                 if (angle >= anglePlus) { angle = anglePlus; }
                 if (angle <= angleMinus) { angle = angleMinus; }
@@ -73,9 +73,9 @@ namespace Input
         }
         private void Flip()
         {
-            scale = transform.localScale;
+            scale = gameObject.transform.localScale;
             scale.x *= -1;
-            transform.localScale = scale;
+            gameObject.transform.localScale = scale;
         }
     }
 }

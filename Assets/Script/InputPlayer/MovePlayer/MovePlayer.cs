@@ -1,3 +1,5 @@
+using DG.Tweening;
+using RegistratorObject;
 using UnityEngine;
 using Zenject;
 
@@ -9,17 +11,20 @@ namespace Input
         [SerializeField] private Transform pointOutRay;
         private float moveSpeed, jampSpeed, gndDistance;
         private Rigidbody2D rbThisObject;
-        private string tagGnd;
+        private int tempHashObject;
+        private Construction tempObject;
         private RaycastHit2D hit;
         private Vector3 scale;
         private bool isMoveTrigger;
         private bool isRun = false, isStopRun = false;
 
         private IInput inputData;
+        private IRegistrator registrator;
         [Inject]
-        public void Init(IInput x)
+        public void Init(IInput _inputData, IRegistrator _registrator)
         {
-            inputData = x;
+            inputData = _inputData;
+            registrator = _registrator;
         }
         void Start()
         {
@@ -30,7 +35,6 @@ namespace Input
         {
             moveSpeed = settings.MoveSpeed;
             jampSpeed = settings.JampSpeed;
-            tagGnd = settings.TagGnd;
             gndDistance = settings.GndDistance;
         }
         private void GetRun()
@@ -76,13 +80,13 @@ namespace Input
             }
             else
             {
-                if (inputData.Updata().Move.x > 0 && isMoveTrigger )
+                if (inputData.Updata().Move.x > 0 && isMoveTrigger)
                 {
                     isMoveTrigger = false;
                     if (scale.x == -1 && inputData.Updata().Move.x > 0) { Flip(); }
                     rbThisObject.velocity = transform.right * jampSpeed;
                 }
-                if (inputData.Updata().Move.x < 0 && isMoveTrigger )
+                if (inputData.Updata().Move.x < 0 && isMoveTrigger)
                 {
                     isMoveTrigger = false;
                     if (scale.x == 1 && inputData.Updata().Move.x < 0) { Flip(); }
@@ -103,7 +107,6 @@ namespace Input
                 if (scale.x == 1 && inputData.Updata().Move.x < 0) { Flip(); }
                 rbThisObject.velocity = -new Vector2(1, -1) * jampSpeed;
             }
-
         }
         private void Flip()
         {
@@ -116,9 +119,22 @@ namespace Input
             hit = Physics2D.Raycast(pointOutRay.position, Vector2.down, gndDistance);
 
             if (hit.collider == null) { return false; }
-            else if (hit.collider.gameObject.tag == tagGnd) { return true; }
-            else { return false; }
+            else
+            {
+                if (tempHashObject != hit.collider.gameObject.GetHashCode())
+                {
+                    tempHashObject = hit.collider.gameObject.GetHashCode();
+                    tempObject = registrator.SetObjectHash(tempHashObject);
+                }
+                else
+                {
+                    if (tempObject.TypeObject == TypeObject.Other)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
-
