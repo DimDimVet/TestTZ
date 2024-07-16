@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,11 @@ namespace Input
 {
     public class InputPlayer : IInput 
     {
+        public Action<InputData> OnStartJamp { get { return onStartJamp; } set { onStartJamp = value; } }
+        private Action<InputData> onStartJamp;
+        public Action<InputData> OnEndJamp { get { return onEndJamp; } set { onEndJamp = value; } }
+        private Action<InputData> onEndJamp;
+
         private InputData inputData;
         private InputActions inputActions;
 
@@ -36,9 +42,9 @@ namespace Input
                     inputActions.KeyMap.MouseRightButton.performed += context => { inputData.MouseRightButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
                     inputActions.KeyMap.MouseRightButton.canceled += context => { inputData.MouseRightButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
 
-                    inputActions.KeyMap.Jamp.started += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); };
+                    inputActions.KeyMap.Jamp.started += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); StartJamp(inputData); };
                     inputActions.KeyMap.Jamp.performed += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); };
-                    inputActions.KeyMap.Jamp.canceled += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); };
+                    inputActions.KeyMap.Jamp.canceled += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); EndJamp(inputData); };
                 }
                 //Карта UI
                 {
@@ -57,6 +63,14 @@ namespace Input
         public InputData Updata()
         {
             return inputData;
+        }
+        private void StartJamp(InputData _inputData)
+        {
+            onStartJamp?.Invoke(inputData);
+        }
+        private void EndJamp(InputData _inputData)
+        {
+            onEndJamp?.Invoke(inputData);
         }
     }
 }
