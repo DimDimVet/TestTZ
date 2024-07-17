@@ -1,14 +1,12 @@
-using Unity.Mathematics;
+using UnityEngine;
 namespace Input
 {
     public struct InputData
     {
-        public float2 Move;
-        public float2 Mouse;
-        public float2 MousePosition;
-        public float MouseLeftButton;
-        public float MouseMiddleButton;
-        public float MouseRightButton;
+        public Vector2 Move;
+        public Vector2 Mouse;
+        public Vector2 MousePosition;
+
         public float Jamp;
     }
 }

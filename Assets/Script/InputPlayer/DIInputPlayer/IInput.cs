@@ -5,9 +5,12 @@ namespace Input
     public interface IInput
     {
         void Enable();
-        Action<InputData> OnStartJamp { get; set; }
-        Action<InputData> OnEndJamp { get; set; }
-        InputData Updata();
+        //InputData Updata();
+        Action<InputData> OnMoveButton { get; set; }
+        Action<InputData> OnStartPressButton { get; set; }
+        Action<InputData> OnEndPressButton { get; set; }
+        Action<InputData> OnMoveMouse { get; set; }
+       
     }
 }
 

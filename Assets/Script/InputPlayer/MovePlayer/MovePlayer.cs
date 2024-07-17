@@ -15,6 +15,7 @@ namespace Input
         private Construction tempObject;
         private RaycastHit2D hit;
         private Vector3 scale;
+        private InputData inputs;
         private bool isMoveTrigger;
         private bool isRun = false, isStopRun = false;
 
@@ -25,6 +26,13 @@ namespace Input
         {
             inputData = _inputData;
             registrator = _registrator;
+        }
+        private void OnEnable()
+        {
+            inputData.Enable();
+            inputData.OnMoveButton += SetInput;
+            inputData.OnStartPressButton += SetInput;
+            inputData.OnEndPressButton += SetInput;
         }
         void Start()
         {
@@ -46,6 +54,10 @@ namespace Input
                 isRun = true;
             }
         }
+        private void SetInput(InputData _inputData)
+        {
+            inputs = _inputData;
+        }
         void FixedUpdate()
         {
             if (isStopRun) { return; }
@@ -59,20 +71,20 @@ namespace Input
             if (ScanGND())
             {
                 isMoveTrigger = true;
-                if (inputData.Updata().Jamp > 0)
+                if (inputs.Jamp > 0)
                 {
                     rbThisObject.velocity = transform.up * jampSpeed;
                 }
                 else
                 {
-                    if (inputData.Updata().Move.x > 0)
+                    if (inputs.Move.x > 0)
                     {
-                        if (scale.x == -1 && inputData.Updata().Move.x > 0) { Flip(); }
+                        if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                         rbThisObject.velocity = transform.right * moveSpeed;
                     }
-                    if (inputData.Updata().Move.x < 0)
+                    if (inputs.Move.x < 0)
                     {
-                        if (scale.x == 1 && inputData.Updata().Move.x < 0) { Flip(); }
+                        if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }
                         rbThisObject.velocity = -transform.right * moveSpeed;
                     }
                 }
@@ -80,31 +92,31 @@ namespace Input
             }
             else
             {
-                if (inputData.Updata().Move.x > 0 && isMoveTrigger)
+                if (inputs.Move.x > 0 && isMoveTrigger)
                 {
                     isMoveTrigger = false;
-                    if (scale.x == -1 && inputData.Updata().Move.x > 0) { Flip(); }
+                    if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                     rbThisObject.velocity = transform.right * jampSpeed;
                 }
-                if (inputData.Updata().Move.x < 0 && isMoveTrigger)
+                if (inputs.Move.x < 0 && isMoveTrigger)
                 {
                     isMoveTrigger = false;
-                    if (scale.x == 1 && inputData.Updata().Move.x < 0) { Flip(); }
+                    if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }
                     rbThisObject.velocity = -transform.right * jampSpeed;
                 }
 
             }
 
-            if (inputData.Updata().Move.x > 0 && isMoveTrigger && inputData.Updata().Jamp > 0)
+            if (inputs.Move.x > 0 && isMoveTrigger && inputs.Jamp > 0)
             {
                 isMoveTrigger = false;
-                if (scale.x == -1 && inputData.Updata().Move.x > 0) { Flip(); }
+                if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                 rbThisObject.velocity = new Vector2(1, 1) * jampSpeed;
             }
-            if (inputData.Updata().Move.x < 0 && isMoveTrigger && inputData.Updata().Jamp > 0)
+            if (inputs.Move.x < 0 && isMoveTrigger && inputs.Jamp > 0)
             {
                 isMoveTrigger = false;
-                if (scale.x == 1 && inputData.Updata().Move.x < 0) { Flip(); }
+                if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }
                 rbThisObject.velocity = -new Vector2(1, -1) * jampSpeed;
             }
         }

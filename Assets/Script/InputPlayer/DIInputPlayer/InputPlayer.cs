@@ -4,12 +4,16 @@ using UnityEngine.InputSystem;
 
 namespace Input
 {
-    public class InputPlayer : IInput 
+    public class InputPlayer : IInput
     {
-        public Action<InputData> OnStartJamp { get { return onStartJamp; } set { onStartJamp = value; } }
-        private Action<InputData> onStartJamp;
-        public Action<InputData> OnEndJamp { get { return onEndJamp; } set { onEndJamp = value; } }
-        private Action<InputData> onEndJamp;
+        public Action<InputData> OnMoveButton { get { return onMoveButton; } set { onMoveButton = value; } }
+        private Action<InputData> onMoveButton;
+        public Action<InputData> OnStartPressButton { get { return onStartPressButton; } set { onStartPressButton = value; } }
+        private Action<InputData> onStartPressButton;
+        public Action<InputData> OnEndPressButton { get { return onEndPressButton; } set { onEndPressButton = value; } }
+        private Action<InputData> onEndPressButton;
+        public Action<InputData> OnMoveMouse { get { return onMoveMouse; } set { onMoveMouse = value; } }
+        private Action<InputData> onMoveMouse;
 
         private InputData inputData;
         private InputActions inputActions;
@@ -22,35 +26,17 @@ namespace Input
             {
                 //Карта Key
                 {
-                    inputActions.KeyMap.WASD.started += contex => inputData.Move = contex.ReadValue<Vector2>();
-                    inputActions.KeyMap.WASD.performed += contex => inputData.Move = contex.ReadValue<Vector2>();
-                    inputActions.KeyMap.WASD.canceled += contex => inputData.Move = contex.ReadValue<Vector2>();
+                    inputActions.KeyMap.WASD.started += contex => { inputData.Move = contex.ReadValue<Vector2>(); MoveButton(inputData); };
+                    inputActions.KeyMap.WASD.performed += contex => { inputData.Move = contex.ReadValue<Vector2>(); MoveButton(inputData); };
+                    inputActions.KeyMap.WASD.canceled += contex => { inputData.Move = contex.ReadValue<Vector2>(); MoveButton(inputData); };
 
-                    inputActions.KeyMap.Look.started += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
+                    inputActions.KeyMap.Look.started += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); MoveMouse(inputData);};
                     inputActions.KeyMap.Look.performed += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
                     inputActions.KeyMap.Look.canceled += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
 
-                    inputActions.KeyMap.MouseLeftButton.started += context => { inputData.MouseLeftButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseLeftButton.performed += context => { inputData.MouseLeftButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseLeftButton.canceled += context => { inputData.MouseLeftButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-
-                    inputActions.KeyMap.MouseMiddleButton.started += context => { inputData.MouseMiddleButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseMiddleButton.performed += context => { inputData.MouseMiddleButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseMiddleButton.canceled += context => { inputData.MouseMiddleButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-
-                    inputActions.KeyMap.MouseRightButton.started += context => { inputData.MouseRightButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseRightButton.performed += context => { inputData.MouseRightButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-                    inputActions.KeyMap.MouseRightButton.canceled += context => { inputData.MouseRightButton = context.ReadValue<float>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
-
-                    inputActions.KeyMap.Jamp.started += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); StartJamp(inputData); };
-                    inputActions.KeyMap.Jamp.performed += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); };
-                    inputActions.KeyMap.Jamp.canceled += context => { inputData.Jamp = context.ReadValue<float>(); Updata(); EndJamp(inputData); };
-                }
-                //Карта UI
-                {
-                    inputActions.UIMap.WASDUI.started += contex => inputData.Move = contex.ReadValue<Vector2>();
-                    inputActions.UIMap.WASDUI.performed += contex => inputData.Move = contex.ReadValue<Vector2>();
-                    inputActions.UIMap.WASDUI.canceled += contex => inputData.Move = contex.ReadValue<Vector2>();
+                    inputActions.KeyMap.Jamp.started += context => { inputData.Jamp = context.ReadValue<float>(); StartPressButton(inputData); };
+                    inputActions.KeyMap.Jamp.performed += context => { inputData.Jamp = context.ReadValue<float>(); };
+                    inputActions.KeyMap.Jamp.canceled += context => { inputData.Jamp = context.ReadValue<float>(); EndPressButton(inputData); };
                 }
 
                 inputActions.Enable();
@@ -60,17 +46,21 @@ namespace Input
         {
             inputActions.Disable();
         }
-        public InputData Updata()
+        private void MoveButton(InputData _inputData)
         {
-            return inputData;
+            onMoveButton?.Invoke(_inputData);
         }
-        private void StartJamp(InputData _inputData)
+        private void StartPressButton(InputData _inputData)
         {
-            onStartJamp?.Invoke(inputData);
+            onStartPressButton?.Invoke(_inputData);
         }
-        private void EndJamp(InputData _inputData)
+        private void EndPressButton(InputData _inputData)
         {
-            onEndJamp?.Invoke(inputData);
+            onEndPressButton?.Invoke(_inputData);
+        }
+        private void MoveMouse(InputData _inputData)
+        {
+            onMoveMouse?.Invoke(_inputData);
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Windows;
 using Zenject;
 
 namespace Input
@@ -11,6 +12,7 @@ namespace Input
         private float anglePlus, angleMinus, angle;
         private Vector2 currentMousePosition, direction;
         private Vector3 worldMousePosition, scale, pos;
+        private InputData inputs;
         private bool isRun = false, isStopRun = false;
 
         private IInput inputData;
@@ -18,6 +20,10 @@ namespace Input
         public void Init(IInput _inputData)
         {
             inputData = _inputData;
+        }
+        private void OnEnable()
+        {
+            inputData.OnMoveMouse += SetInput;
         }
         void Start()
         {
@@ -35,6 +41,10 @@ namespace Input
                 isRun = true;
             }
         }
+        private void SetInput(InputData _inputData)
+        {
+            inputs = _inputData;
+        }
         void Update()
         {
             if (isStopRun) { return; }
@@ -46,10 +56,10 @@ namespace Input
         {
             scale = transform.localScale;
             pos = cameraComponent.WorldToScreenPoint(gameObject.transform.position);
-            if (inputData.Updata().MousePosition.x > pos.x && scale.x <= -0) { Flip(); }
-            if (inputData.Updata().MousePosition.x < pos.x && scale.x >= 0) { Flip(); }
+            if (inputs.MousePosition.x > pos.x && scale.x <= -0) { Flip(); }
+            if (inputs.MousePosition.x < pos.x && scale.x >= 0) { Flip(); }
 
-            currentMousePosition = (Vector2)inputData.Updata().MousePosition;
+            currentMousePosition = (Vector2)inputs.MousePosition;
             worldMousePosition = cameraComponent.ScreenToWorldPoint(currentMousePosition);
             direction = worldMousePosition - gameObject.transform.position;
             angle = Vector2.SignedAngle(Vector2.right, direction);

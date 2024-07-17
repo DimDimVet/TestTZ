@@ -1,12 +1,11 @@
 using DG.Tweening;
-using RegistratorObject;
+using Input;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
-namespace Input
+namespace Anims
 {
-    public class AnimCiclePlayer : MonoBehaviour
+    public class AnimPlayer : MonoBehaviour
     {
         [SerializeField] private GameObject body;
         [SerializeField] private GameObject hayer;
@@ -29,7 +28,7 @@ namespace Input
         [SerializeField][Range(1, 3)] private float mouthUpScale = 1.1f;
         [SerializeField][Range(0, 10)] private float mouthUpDuration = 1f;
 
-        Sequence listHayer,listMouth;
+        Sequence listHayer, listMouth;
 
         private bool isRun = false, isStopRun = false;
 
@@ -41,8 +40,7 @@ namespace Input
         }
         private void OnEnable()
         {
-            inputData.OnStartJamp += StartJamp;
-            inputData.OnEndJamp += EndJamp;
+            inputData.OnStartPressButton += StartJamp;
         }
         void Start()
         {
@@ -52,7 +50,7 @@ namespace Input
         {
 
             listHayer = DOTween.Sequence();
-            listMouth = DOTween.Sequence(); 
+            listMouth = DOTween.Sequence();
 
             if (body != null)
             {
@@ -62,7 +60,7 @@ namespace Input
                 //listHayer.Join(eye.transform.DOScale(eye.transform.localScale * eyeScale, eyeDuration));
                 //listHayer.Join(armUp.transform.DOScale(armUp.transform.localScale * armUpScale, armUpDuration));
                 //listHayer.Join(mouth.transform.DOScale(mouth.transform.localScale * mouthUpScale, mouthUpDuration));
-                listHayer.AppendCallback(() => 
+                listHayer.AppendCallback(() =>
                 {
                     if (body == null)
                     { listHayer.Kill(); }
@@ -87,7 +85,7 @@ namespace Input
             }
         }
 
-        private void StartJamp(InputData _inputData) 
+        private void StartJamp(InputData _inputData)
         {
             listMouth.Play();
         }

@@ -150,6 +150,61 @@ namespace Input
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e64b910f-4943-479e-a95b-0b74d3452eb4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WASD"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ea0c03c7-e444-4110-beb6-6dc5fa602236"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WASD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dbcc98da-c0b7-45e4-a52e-42d4ea47855f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WASD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""893b4545-4ede-4ec9-8bcc-71bdf25492ca"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WASD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6601c571-f10f-4d82-ab90-4d845dbdc02d"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WASD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""f003026d-c162-477d-91fa-d8b58c392e25"",
                     ""path"": ""<Joystick>/stick"",
@@ -249,228 +304,6 @@ namespace Input
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""UIMap"",
-            ""id"": ""6a26a4f4-dc1f-4018-ab00-52a50643f357"",
-            ""actions"": [
-                {
-                    ""name"": ""WASDUI"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""cb50cfb1-8249-4ea3-a520-9addc6f901c2"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClickUI"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6fae29f9-5b67-471e-bc48-ac560f2fee5e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Point"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""ac666f55-8e67-4b40-989b-1dc453a50aee"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""Gamepad"",
-                    ""id"": ""2b747a40-87b9-40e1-8912-8e057d6d4017"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""40672866-1b5c-4315-bd06-309ef777fe2b"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""3489b5a5-de55-46c8-856a-cbaf4ba8a371"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""50806e66-b60c-418c-b7dd-2cf4de03c2a7"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""ce67f8c1-493b-4bd8-be82-988bf3697dd7"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2aa3afa7-d882-4772-a23b-14d4ff42fa4a"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""3cbd234d-4e7e-4652-bf20-31c4c2f9c145"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""871ff09a-9337-4f46-a7a7-9678d1db6b5a"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fc7ac157-221c-4436-8029-5c1915387063"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WASDUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""45be0538-5a71-481e-9a0a-7fada72e7466"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ClickUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9ce8eb05-c0bf-486f-9fa8-72f959138042"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ClickUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""85b9dbbe-f7c0-4f08-b989-110754738011"",
-                    ""path"": ""<Pen>/tip"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ClickUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""01c26eba-c0e3-4db9-adb4-56902bf4df93"",
-                    ""path"": ""<Touchscreen>/touch*/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ClickUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b11ce26c-b771-4bd9-912c-7278d253860b"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ClickUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""51c9500f-333f-449d-8209-da822e803f6a"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7066c7c-1a01-4b4f-9f58-c745e2d09edd"",
-                    ""path"": ""<Pen>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0723cb24-3f40-4d2d-ab96-04aba5ccfabd"",
-                    ""path"": ""<Touchscreen>/touch*/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -484,11 +317,6 @@ namespace Input
             m_KeyMap_MouseLeftButton = m_KeyMap.FindAction("MouseLeftButton", throwIfNotFound: true);
             m_KeyMap_MouseMiddleButton = m_KeyMap.FindAction("MouseMiddleButton", throwIfNotFound: true);
             m_KeyMap_MouseRightButton = m_KeyMap.FindAction("MouseRightButton", throwIfNotFound: true);
-            // UIMap
-            m_UIMap = asset.FindActionMap("UIMap", throwIfNotFound: true);
-            m_UIMap_WASDUI = m_UIMap.FindAction("WASDUI", throwIfNotFound: true);
-            m_UIMap_ClickUI = m_UIMap.FindAction("ClickUI", throwIfNotFound: true);
-            m_UIMap_Point = m_UIMap.FindAction("Point", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -640,68 +468,6 @@ namespace Input
             }
         }
         public KeyMapActions @KeyMap => new KeyMapActions(this);
-
-        // UIMap
-        private readonly InputActionMap m_UIMap;
-        private List<IUIMapActions> m_UIMapActionsCallbackInterfaces = new List<IUIMapActions>();
-        private readonly InputAction m_UIMap_WASDUI;
-        private readonly InputAction m_UIMap_ClickUI;
-        private readonly InputAction m_UIMap_Point;
-        public struct UIMapActions
-        {
-            private @InputActions m_Wrapper;
-            public UIMapActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @WASDUI => m_Wrapper.m_UIMap_WASDUI;
-            public InputAction @ClickUI => m_Wrapper.m_UIMap_ClickUI;
-            public InputAction @Point => m_Wrapper.m_UIMap_Point;
-            public InputActionMap Get() { return m_Wrapper.m_UIMap; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(UIMapActions set) { return set.Get(); }
-            public void AddCallbacks(IUIMapActions instance)
-            {
-                if (instance == null || m_Wrapper.m_UIMapActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_UIMapActionsCallbackInterfaces.Add(instance);
-                @WASDUI.started += instance.OnWASDUI;
-                @WASDUI.performed += instance.OnWASDUI;
-                @WASDUI.canceled += instance.OnWASDUI;
-                @ClickUI.started += instance.OnClickUI;
-                @ClickUI.performed += instance.OnClickUI;
-                @ClickUI.canceled += instance.OnClickUI;
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
-            }
-
-            private void UnregisterCallbacks(IUIMapActions instance)
-            {
-                @WASDUI.started -= instance.OnWASDUI;
-                @WASDUI.performed -= instance.OnWASDUI;
-                @WASDUI.canceled -= instance.OnWASDUI;
-                @ClickUI.started -= instance.OnClickUI;
-                @ClickUI.performed -= instance.OnClickUI;
-                @ClickUI.canceled -= instance.OnClickUI;
-                @Point.started -= instance.OnPoint;
-                @Point.performed -= instance.OnPoint;
-                @Point.canceled -= instance.OnPoint;
-            }
-
-            public void RemoveCallbacks(IUIMapActions instance)
-            {
-                if (m_Wrapper.m_UIMapActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IUIMapActions instance)
-            {
-                foreach (var item in m_Wrapper.m_UIMapActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_UIMapActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public UIMapActions @UIMap => new UIMapActions(this);
         public interface IKeyMapActions
         {
             void OnWASD(InputAction.CallbackContext context);
@@ -711,12 +477,6 @@ namespace Input
             void OnMouseLeftButton(InputAction.CallbackContext context);
             void OnMouseMiddleButton(InputAction.CallbackContext context);
             void OnMouseRightButton(InputAction.CallbackContext context);
-        }
-        public interface IUIMapActions
-        {
-            void OnWASDUI(InputAction.CallbackContext context);
-            void OnClickUI(InputAction.CallbackContext context);
-            void OnPoint(InputAction.CallbackContext context);
         }
     }
 }
