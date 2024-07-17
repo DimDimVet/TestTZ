@@ -6,7 +6,8 @@ namespace RegistratorObject
     {
         Player,
         Enemy,
-        Other
+        Other,
+        Drop
     }
     public class ListDataExecutor : IRegistrator
     {
