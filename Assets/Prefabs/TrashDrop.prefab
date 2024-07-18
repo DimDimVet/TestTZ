@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7797306787165667754}
   - component: {fileID: 6983654892957813746}
   - component: {fileID: 4751561977897199754}
+  - component: {fileID: 65883134688676720}
+  - component: {fileID: 2008697656610549812}
   m_Layer: 0
   m_Name: TrashDrop
   m_TagString: Untagged
@@ -188,3 +190,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiusRayCast: 3
   dropSettings: {fileID: 11400000, guid: bef01b8aa40dc11459c3efda9803a2b5, type: 2}
+--- !u!114 &65883134688676720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797878771857715663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29047902d229094faa2b1bc56cdeb0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropScale: 1.2
+  dropDuration: 0.5
+--- !u!58 &2008697656610549812
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797878771857715663}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.91953313

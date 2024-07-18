@@ -8,6 +8,8 @@ namespace Drop
     {
         [SerializeField] private DropSettings dropSettings;
         private DropData dropData;
+        private Collider2D colliderObject;
+        private bool isOtherContact=false;
         protected override void SetSettings()
         {
             dropData = new DropData
@@ -17,27 +19,38 @@ namespace Drop
                 TypeObject = TypeObject.Drop,
             };
         }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            colliderObject = collision;
+        }
         protected override void ScanObject()
         {
-            Collider2D collider2D;
-            collider2D = Physics2D.OverlapCircle(this.transform.position, radiusRayCast);
-
-            if (collider2D == null) { return; }
+            if (colliderObject == null) { return; }
             else
             {
-                tempHashObject = collider2D.gameObject.GetHashCode();
+                tempHashObject = colliderObject.gameObject.GetHashCode();
                 if (tempHashObject == thisHash) { return; }
 
                 tempObject = registrator.SetObjectHash(tempHashObject);
 
+                if (tempObject.TypeObject == TypeObject.Other)
+                {
+                    if (isOtherContact == false) { isOtherContact=true; }
+                }
+
                 if (tempObject.TypeObject == TypeObject.Player)
                 {
                     dropExecutor.SetReturnData(thisHash, tempHashObject, dropData);
+                    isOtherContact = false;
                 }
-                if (tempObject.TypeObject == TypeObject.Drop)
+
+                if (tempObject.TypeObject == TypeObject.Drop && isOtherContact)
                 {
                     dropExecutor.SetReturnData(thisHash, tempHashObject, dropData);
+                    isOtherContact = false;
                 }
+
+                colliderObject = null;
             }
         }
         public class Factory : PlaceholderFactory<TrashDrop>

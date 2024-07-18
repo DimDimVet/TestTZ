@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Input;
+using Drop;
 using UnityEngine;
 using Zenject;
 
@@ -11,78 +11,51 @@ namespace Anims
         [SerializeField][Range(0, 10)] protected float dropDuration = 1f;
         protected GameObject drop;
         protected Sequence listTweenDrop;
+        private int thisHash;
 
-        private bool isRun = false, isStopRun = false;
-
-        private IInput inputData;
+        protected IDropExecutor dropExecutor;
         [Inject]
-        public void Init(IInput _inputData)
+        public void Init(IDropExecutor _dropExecutor)
         {
-            inputData = _inputData;
+            dropExecutor = _dropExecutor;
         }
         private void OnEnable()
         {
-            //inputData.OnStartPressButton += StartJamp;
+            listTweenDrop.Play();
+            dropExecutor.OnSetCollisionHash += ConnectObject;
         }
         void Start()
         {
             SetSettings();
+            SetTween();
         }
         private void SetSettings()
         {
+            thisHash = this.gameObject.GetHashCode();
             drop = this.gameObject;
-
+        }
+        private void SetTween()
+        {
             listTweenDrop = DOTween.Sequence();
 
             if (drop != null)
             {
-                //
-                listTweenDrop.Pause();
-                listTweenDrop.Append(drop.transform.DOScaleX(drop.transform.localScale.x * dropScale, dropDuration).SetEase(Ease.Linear));
-                listTweenDrop.Append(drop.transform.DOScaleX(drop.transform.localScale.x, dropDuration).SetEase(Ease.Linear));
+                listTweenDrop.Append(drop.transform.DOScaleY(drop.transform.localScale.y * dropScale, dropDuration).SetEase(Ease.Linear));
+                listTweenDrop.Join(drop.transform.DOScaleX(drop.transform.localScale.x * dropScale, dropDuration).SetEase(Ease.Linear));
 
-                listTweenDrop.AppendCallback(() =>
-                {
-                    listTweenDrop.Pause();
-                });
+                listTweenDrop.Append(drop.transform.DOScaleY(drop.transform.localScale.y, dropDuration).SetEase(Ease.Linear));
+                listTweenDrop.Join(drop.transform.DOScaleX(drop.transform.localScale.x, dropDuration).SetEase(Ease.Linear));
+
+                listTweenDrop.AppendCallback(() =>{});
                 listTweenDrop.SetLoops(-1, LoopType.Restart);
-                //
             }
         }
 
-        //private void StartJamp(InputData _inputData)
-        //{
-        //    listMouth.Play();
-        //}
-        //private void EndJamp(InputData _inputData)
-        //{
-        //    //listMouth.PlayBackwards();
-        //}
-        //private void PauseButton()
-        //{
-        //    listHayer.Pause();
-        //}
-        //private void PlayButton()
-        //{
-        //    listHayer.Play();
-        //}
-        //private void KillButton()
-        //{
-        //    listHayer.Kill();
-        //}
-        //private void PlayForwardButton()
-        //{
-        //    listHayer.PlayForward();
-        //}
-        //private void PlayBackwardsButton()
-        //{
-        //    listHayer.PlayBackwards();
-        //}
-        private void GetRun()
+        private void ConnectObject(int _thisHash, int _receptionHash, DropData _dropData)
         {
-            if (!isRun)
+            if (_thisHash == thisHash)
             {
-                isRun = true;
+                listTweenDrop.Pause();
             }
         }
     }

@@ -10,7 +10,6 @@ namespace Input
         Action<InputData> OnStartPressButton { get; set; }
         Action<InputData> OnEndPressButton { get; set; }
         Action<InputData> OnMoveMouse { get; set; }
-       
     }
 }
 

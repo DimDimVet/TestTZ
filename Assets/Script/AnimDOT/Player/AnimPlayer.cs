@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Input;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Zenject;
 
 namespace Anims
@@ -22,14 +23,13 @@ namespace Anims
         [SerializeField][Range(1, 2)] private float eyeScale = 1.1f;
         [SerializeField][Range(0, 10)] private float eyeDuration = 1f;
 
-        [SerializeField][Range(1, 2)] private float armUpScale = 1.1f;
+        [SerializeField][Range(1, 5)] private float armUpScale = 1.1f;
         [SerializeField][Range(0, 10)] private float armUpDuration = 1f;
 
         [SerializeField][Range(1, 3)] private float mouthUpScale = 1.1f;
         [SerializeField][Range(0, 10)] private float mouthUpDuration = 1f;
 
-        Sequence listHayer, listMouth;
-
+        Sequence listTweenHayer, listTweenMouth;
         private bool isRun = false, isStopRun = false;
 
         private IInput inputData;
@@ -48,77 +48,41 @@ namespace Anims
         }
         private void SetSettings()
         {
-
-            listHayer = DOTween.Sequence();
-            listMouth = DOTween.Sequence();
+            listTweenHayer = DOTween.Sequence();
+            listTweenMouth = DOTween.Sequence();
 
             if (body != null)
             {
-                //sequence.Append(body.transform.DOScaleX(3 , bodyDuration));
-                listHayer.Append(hayer.transform.DOScale(hayer.transform.localScale * hayerScale, hayerDuration)).SetEase(Ease.Linear);
-                listHayer.Append(hayer.transform.DOScale(hayer.transform.localScale, hayerDuration).SetEase(Ease.Linear));
-                //listHayer.Join(eye.transform.DOScale(eye.transform.localScale * eyeScale, eyeDuration));
-                //listHayer.Join(armUp.transform.DOScale(armUp.transform.localScale * armUpScale, armUpDuration));
-                //listHayer.Join(mouth.transform.DOScale(mouth.transform.localScale * mouthUpScale, mouthUpDuration));
-                listHayer.AppendCallback(() =>
+                listTweenHayer.Append(hayer.transform.DOScale(hayer.transform.localScale * hayerScale, hayerDuration)).SetEase(Ease.Linear);
+                listTweenHayer.Append(hayer.transform.DOScale(hayer.transform.localScale, hayerDuration).SetEase(Ease.Linear));
+
+                listTweenHayer.AppendCallback(() =>
                 {
                     if (body == null)
-                    { listHayer.Kill(); }
+                    { listTweenHayer.Kill(); }
                 });
-                listHayer.SetLoops(-1, LoopType.Restart);
+                listTweenHayer.SetLoops(-1, LoopType.Restart);
                 //
-                listMouth.Pause();
-                listMouth.Append(mouth.transform.DOScaleX(mouth.transform.localScale.x * mouthUpScale, mouthUpDuration).SetEase(Ease.Linear));
-                listMouth.Join(eye.transform.DOScale(eye.transform.localScale * eyeScale, eyeDuration));
-                listMouth.Join(body.transform.DOScaleY(body.transform.localScale.y * bodyScale, bodyDuration));
+                listTweenMouth.Pause();
+                listTweenMouth.Append(mouth.transform.DOScaleX(mouth.transform.localScale.x * mouthUpScale, mouthUpDuration).SetEase(Ease.Linear));
+                listTweenMouth.Join(eye.transform.DOScale(eye.transform.localScale * eyeScale, eyeDuration));
+                listTweenMouth.Join(body.transform.DOScaleY(body.transform.localScale.y * bodyScale, bodyDuration));
 
-                listMouth.Append(mouth.transform.DOScaleX(mouth.transform.localScale.x, mouthUpDuration).SetEase(Ease.Linear));
-                listMouth.Join(eye.transform.DOScale(eye.transform.localScale, eyeDuration));
-                listMouth.Join(body.transform.DOScaleY(body.transform.localScale.y, bodyDuration));
+                listTweenMouth.Append(mouth.transform.DOScaleX(mouth.transform.localScale.x, mouthUpDuration).SetEase(Ease.Linear));
+                listTweenMouth.Join(eye.transform.DOScale(eye.transform.localScale, eyeDuration));
+                listTweenMouth.Join(body.transform.DOScaleY(body.transform.localScale.y, bodyDuration));
 
-                listMouth.AppendCallback(() =>
+                listTweenMouth.AppendCallback(() =>
                 {
-                    listMouth.Pause();
+                    listTweenMouth.Pause();
                 });
-                listMouth.SetLoops(-1, LoopType.Restart);
-                //
+                listTweenMouth.SetLoops(-1, LoopType.Restart);
             }
         }
 
         private void StartJamp(InputData _inputData)
         {
-            listMouth.Play();
-        }
-        private void EndJamp(InputData _inputData)
-        {
-            //listMouth.PlayBackwards();
-        }
-        private void PauseButton()
-        {
-            listHayer.Pause();
-        }
-        private void PlayButton()
-        {
-            listHayer.Play();
-        }
-        private void KillButton()
-        {
-            listHayer.Kill();
-        }
-        private void PlayForwardButton()
-        {
-            listHayer.PlayForward();
-        }
-        private void PlayBackwardsButton()
-        {
-            listHayer.PlayBackwards();
-        }
-        private void GetRun()
-        {
-            if (!isRun)
-            {
-                isRun = true;
-            }
+            listTweenMouth.Play();
         }
     }
 }

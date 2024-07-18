@@ -14,6 +14,8 @@ namespace Input
         private Action<InputData> onEndPressButton;
         public Action<InputData> OnMoveMouse { get { return onMoveMouse; } set { onMoveMouse = value; } }
         private Action<InputData> onMoveMouse;
+        public Action<Vector3> OnCurrentFlip { get { return onCurrentFlip; } set { onCurrentFlip = value; } }
+        private Action<Vector3> onCurrentFlip;
 
         private InputData inputData;
         private InputActions inputActions;
@@ -61,6 +63,10 @@ namespace Input
         private void MoveMouse(InputData _inputData)
         {
             onMoveMouse?.Invoke(_inputData);
+        }
+        public void CurrentFlip(Vector3 _scale)
+        {
+            onCurrentFlip?.Invoke(_scale);
         }
     }
 }

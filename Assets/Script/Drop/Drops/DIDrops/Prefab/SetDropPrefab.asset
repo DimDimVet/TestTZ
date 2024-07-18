@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98bf60d9bf7d4e498d1c66d67b154d0, type: 3}
+  m_Script: {fileID: 11500000, guid: f84bcec53f33da64797b2582f518be76, type: 3}
   m_Name: SetDropPrefab
   m_EditorClassIdentifier: 
   DropPrefab:
