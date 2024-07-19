@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Trash: 0
   Price: 67
+  TypeDrop: 0

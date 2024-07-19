@@ -6,6 +6,7 @@ namespace Drop
         public int Trash;
         public int Price;
         public TypeObject TypeObject;
+        public TypeDrop TypeDrop;
     }
 }
 

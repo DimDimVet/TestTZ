@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  typeDrop: 1
   thisHash: 0
 --- !u!114 &4751561977897199754
 MonoBehaviour:

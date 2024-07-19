@@ -38,8 +38,8 @@ namespace Drop
         private void RespawnObject()
         {
             nomerDrop = Random.Range(0, 2);
-            if (nomerDrop == 0) { poolMonetaDrop.GetObject(gameObject.transform.localScale.x, poolTransform); }
-            if (nomerDrop == 1) { poolTrashDrop.GetObject(gameObject.transform.localScale.x, poolTransform); }
+            if (nomerDrop == (int)TypeDrop.Moneta) { poolMonetaDrop.GetObject(gameObject.transform.localScale.x, poolTransform); }
+            if (nomerDrop == (int)TypeDrop.Trash) { poolTrashDrop.GetObject(gameObject.transform.localScale.x, poolTransform); }
         }
         void Update()
         {

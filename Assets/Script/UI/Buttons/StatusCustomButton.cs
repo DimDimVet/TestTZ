@@ -4,6 +4,5 @@ namespace UI
     {
         PointEnter, PointExit, PointUp, PointDown,
     }
-
 }
 

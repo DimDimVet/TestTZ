@@ -1,3 +1,4 @@
+using Drop;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DropSettings", menuName = "ScriptableObjects/DropSettings")]
@@ -7,5 +8,6 @@ public class DropSettings : ScriptableObject
     public int Trash = 0;
     [Header("Цена"), Range(0, 100)]
     public int Price = 50;
+    public TypeDrop TypeDrop = TypeDrop.Null;
 
 }

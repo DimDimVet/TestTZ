@@ -6,7 +6,7 @@ namespace RegistratorObject
         public bool ClearData();
         public Construction[] SetList();
         public Construction SetObjectHash(int hash);
-        public Construction[] SetPlayer();
+        public Construction SetPlayer();
         public Construction[] SetEnemys();
 
     }

@@ -68,18 +68,17 @@ namespace RegistratorObject
             }
             return new Construction();
         }
-        public Construction[] SetPlayer()
+        public Construction SetPlayer()
         {
-            Masiv<Construction> tempMassiv = new Masiv<Construction>();
             listData = GetData();
             for (int i = 0; i < listData.Count; i++)
             {
                 if (listData[i].TypeObject is TypeObject.Player)
                 {
-                    temp = tempMassiv.Creat(listData[i], temp);
+                    return listData[i];
                 }
             }
-            return temp;
+            return new Construction();
         }
         public Construction[] SetEnemys()
         {

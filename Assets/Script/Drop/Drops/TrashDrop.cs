@@ -17,6 +17,7 @@ namespace Drop
                 Trash = dropSettings.Trash,
                 Price = dropSettings.Price,
                 TypeObject = TypeObject.Drop,
+                TypeDrop = dropSettings.TypeDrop,
             };
         }
         private void OnTriggerEnter2D(Collider2D collision)

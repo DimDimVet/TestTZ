@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a348735475ada4db3f666473d00d25, type: 3}
-  m_Name: TrashDropSetting
+  m_Script: {fileID: 11500000, guid: 25b36d5a695b5684e84bff3ccd7cf18d, type: 3}
+  m_Name: TrashInvertorySettings
   m_EditorClassIdentifier: 
-  Trash: 5
+  Trash: 6
   Price: 0
-  TypeDrop: 1
