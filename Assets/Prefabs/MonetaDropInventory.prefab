@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2904089167193289897
+--- !u!1 &5714497033976936103
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1046340958197214301}
-  - component: {fileID: 318279854719571215}
-  - component: {fileID: 5464124600670740220}
-  - component: {fileID: 1568901648702743910}
-  - component: {fileID: 6524913177972479076}
-  - component: {fileID: 4067796687870262644}
+  - component: {fileID: 3705890443951997113}
+  - component: {fileID: 4678483271464782795}
+  - component: {fileID: 3983690219413796029}
+  - component: {fileID: 5611853878085558138}
+  - component: {fileID: 824554418258031188}
+  - component: {fileID: 8521319879356425121}
+  - component: {fileID: 999673844011768606}
   m_Layer: 5
   m_Name: MonetaDropInventory
   m_TagString: Untagged
@@ -21,13 +22,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1046340958197214301
+--- !u!224 &3705890443951997113
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,26 +36,26 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -960, y: -540}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &318279854719571215
+--- !u!222 &4678483271464782795
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
   m_CullTransparentMesh: 1
---- !u!114 &5464124600670740220
+--- !u!114 &3983690219413796029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -78,13 +79,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1568901648702743910
+--- !u!114 &5611853878085558138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e8750ce9ec23f74f97101d7fc530826, type: 3}
@@ -118,17 +119,33 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 5464124600670740220}
+  m_TargetGraphic: {fileID: 3983690219413796029}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6524913177972479076
+--- !u!114 &824554418258031188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fedb2a6d46fc4f49929121cb1202763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customButton: {fileID: 5611853878085558138}
+  buttonScaleNorm: 1
+  buttonScalePoint: 1.5
+  buttonDuration: 1
+--- !u!114 &8521319879356425121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714497033976936103}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e7c722d04a3d164cb65e914708a13a4, type: 3}
@@ -136,13 +153,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   thisHash: 0
---- !u!114 &4067796687870262644
+--- !u!114 &999673844011768606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2904089167193289897}
+  m_GameObject: {fileID: 5714497033976936103}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51019c276e50b5c4094ac6aeb933eabb, type: 3}

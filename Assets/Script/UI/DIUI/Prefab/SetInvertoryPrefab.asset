@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SetInvertoryPrefab
   m_EditorClassIdentifier: 
   InvertoryPrefab:
-    MonetaDropInvertory: {fileID: 2904089167193289897, guid: 5e23bf657639c514ca675489d05e3f96, type: 3}
-    TrashDropInvertory: {fileID: 4098448616810200640, guid: be9dc41cf06013b41acc6616d39838b6, type: 3}
+    MonetaDropInvertory: {fileID: 5714497033976936103, guid: 5e23bf657639c514ca675489d05e3f96, type: 3}
+    TrashDropInvertory: {fileID: 6180663027098426123, guid: be9dc41cf06013b41acc6616d39838b6, type: 3}
