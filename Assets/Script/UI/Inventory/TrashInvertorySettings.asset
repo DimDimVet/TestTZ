@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b36d5a695b5684e84bff3ccd7cf18d, type: 3}
   m_Name: TrashInvertorySettings
   m_EditorClassIdentifier: 
-  Trash: 6
-  Price: 0
+  Manual: "\u041E\u0447\u0435\u043D\u044C \u043D\u0443\u0436\u043D\u043E\u0435 \u0432
+    \u0445\u043E\u0437\u044F\u0439\u0441\u0442\u0432\u0435 \u0432\u0435\u0449\u044C!!!"

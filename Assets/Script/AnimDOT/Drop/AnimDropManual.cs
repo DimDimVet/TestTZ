@@ -4,16 +4,19 @@ using UnityEngine;
 
 namespace Anims
 {
-    public class AnimCustomButton : MonoBehaviour
+    public class AnimDropManual : MonoBehaviour
     {
         [SerializeField] private CustomButton customButton;
-        [SerializeField][Range(1, 5)] protected float buttonScaleNorm = 1.1f;
-        [SerializeField][Range(1, 5)] protected float buttonScalePoint = 1.5f;
-        [SerializeField][Range(0, 10)] protected float buttonDuration = 1f;
+        [SerializeField] private Transform manualObject;
+        [SerializeField][Range(0, 10)] protected float manualObjectDuration = 1f;
+
+        private float scaleNorm = 0;
+        private float scalePoint = 1f;
+
         private Sequence listTweenCustomButton;
         private int thisHash;
-        private Vector3 baseScaleButton;
-        private float buttonScale;
+        private Vector3 baseScaleManualObject;
+        private float panelScale;
         private void OnEnable()
         {
             customButton.OnExecutorButton += PointEnter;
@@ -26,8 +29,9 @@ namespace Anims
         private void SetSettings()
         {
             thisHash = this.gameObject.GetHashCode();
-            baseScaleButton = customButton.transform.localScale;
-            buttonScale = buttonScaleNorm;
+            manualObject.localScale= manualObject.localScale * 0;
+
+            panelScale = scaleNorm;
         }
         private void SetTween()
         {
@@ -36,8 +40,8 @@ namespace Anims
 
             if (customButton != null)
             {
-                listTweenCustomButton.Append(customButton.transform.DOScaleY(baseScaleButton.y * buttonScale, buttonDuration));
-                listTweenCustomButton.Join(customButton.transform.DOScaleX(baseScaleButton.x * buttonScale, buttonDuration));
+                listTweenCustomButton.Append(manualObject.DOScaleY(baseScaleManualObject.y + panelScale, manualObjectDuration));
+                listTweenCustomButton.Join(manualObject.DOScaleX(baseScaleManualObject.x + panelScale, manualObjectDuration));
                 listTweenCustomButton.AppendCallback(() => { listTweenCustomButton.Kill(); });
             }
         }
@@ -45,17 +49,16 @@ namespace Anims
         private void PointEnter(int _hash, StatusCustomButton _status)
         {
             if (thisHash != _hash) { return; }
-
             switch (_status)
             {
                 case StatusCustomButton.PointEnter:
                     listTweenCustomButton.Pause();
-                    buttonScale = buttonScalePoint;
+                    panelScale = scalePoint;
                     SetTween();
                     break;
                 case StatusCustomButton.PointExit:
                     listTweenCustomButton.Pause();
-                    buttonScale = buttonScaleNorm;
+                    panelScale = scaleNorm;
                     SetTween();
                     break;
                 case StatusCustomButton.PointDown:

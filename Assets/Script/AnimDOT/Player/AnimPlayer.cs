@@ -1,7 +1,6 @@
 using DG.Tweening;
 using Input;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 namespace Anims
@@ -23,14 +22,10 @@ namespace Anims
         [SerializeField][Range(1, 2)] private float eyeScale = 1.1f;
         [SerializeField][Range(0, 10)] private float eyeDuration = 1f;
 
-        [SerializeField][Range(1, 5)] private float armUpScale = 1.1f;
-        [SerializeField][Range(0, 10)] private float armUpDuration = 1f;
-
         [SerializeField][Range(1, 3)] private float mouthUpScale = 1.1f;
         [SerializeField][Range(0, 10)] private float mouthUpDuration = 1f;
 
         Sequence listTweenHayer, listTweenMouth;
-        private bool isRun = false, isStopRun = false;
 
         private IInput inputData;
         [Inject]
@@ -48,8 +43,8 @@ namespace Anims
         }
         private void SetSettings()
         {
-            listTweenHayer = DOTween.Sequence();
-            listTweenMouth = DOTween.Sequence();
+            if (listTweenHayer == null) { listTweenHayer = DOTween.Sequence(); }
+            if (listTweenMouth == null) { listTweenMouth = DOTween.Sequence(); }
 
             if (body != null)
             {

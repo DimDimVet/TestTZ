@@ -1,0 +1,12 @@
+{
+    "Items": [
+      {
+        "StatusLoad": true,
+        "PathDirectory": "Manual",
+        "NameFile": "Manual",
+        "NameObject": "GameObject",
+        "TypeDrop": 0,
+        "RusText": "asdasdasd"
+      }
+    ]
+}

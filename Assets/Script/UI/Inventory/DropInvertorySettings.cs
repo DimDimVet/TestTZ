@@ -4,6 +4,7 @@ using UnityEngine;
 public class DropInvertorySettings : ScriptableObject
 {
     [Header("Описание")]
+    [TextArea(2, 8)]
     public string Manual = $"nullManual";
 
 }

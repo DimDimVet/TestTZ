@@ -43,6 +43,17 @@ namespace RegistratorObject
             }
             return temp;
         }
+        public void Rewrite(Construction _construction)
+        {
+            listData = GetData();
+            for (int i = 0; i < listData.Count; i++)
+            {
+                if (listData[i].Hash == _construction.Hash)
+                {
+                    listData[i]= _construction;
+                }
+            }
+        }
         public Construction SetObjectHash(int _hash)
         {
             if (listData == null) { SetList(); }

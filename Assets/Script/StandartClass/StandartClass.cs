@@ -9,6 +9,7 @@ public class StandartClass : MonoBehaviour
     }
     void Start()
     {
+
         SetClass();
     }
     private void SetClass()

@@ -8,7 +8,7 @@ namespace RegistratorObject
         public Construction SetObjectHash(int hash);
         public Construction SetPlayer();
         public Construction[] SetEnemys();
-
+        public void Rewrite(Construction _construction);
     }
 }
 

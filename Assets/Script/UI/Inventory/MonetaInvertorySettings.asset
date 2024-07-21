@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b36d5a695b5684e84bff3ccd7cf18d, type: 3}
   m_Name: MonetaInvertorySettings
   m_EditorClassIdentifier: 
-  Trash: 0
-  Price: 34
+  Manual: "\u041C\u043E\u043D\u0435\u0442\u0430...\u043F\u0440\u043E\u0441\u0442\u043E
+    \u043C\u043E\u043D\u0435\u0442\u0430"

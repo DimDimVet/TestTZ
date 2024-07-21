@@ -1,25 +1,19 @@
-﻿using Drop;
-using RegistratorObject;
+﻿using RegistratorObject;
 using UnityEngine;
-using Zenject;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class BaseInvertory : MonoBehaviour
     {
+        [SerializeField] private DropInvertorySettings dropInvertorySettings;
+        [SerializeField] private Text textPole;
         protected int tempHashObject;
         protected Construction tempObject;
         protected int thisHash;
+        private string manual;
         private bool isStopClass = false, isRun = false;
 
-        //protected IRegistrator registrator;
-        //protected IDropExecutor dropExecutor;
-        //[Inject]
-        //public void Init(IRegistrator _registrator, IDropExecutor _dropExecutor)
-        //{
-        //    registrator = _registrator;
-        //    dropExecutor = _dropExecutor;
-        //}
         void Start()
         {
             thisHash = this.gameObject.GetHashCode();
@@ -30,22 +24,22 @@ namespace UI
         {
             if (!isRun)
             {
+                manual = dropInvertorySettings.Manual;
                 isRun = true;
             }
         }
         protected virtual void SetSettings()
         {
-            //
+            if (textPole != null) { textPole.text = manual; }
         }
-        void FixedUpdate()
+        public string GetManual()
+        {
+            return manual;
+        }
+        void Update()
         {
             if (isStopClass) { return; }
             if (!isRun) { SetClass(); }
-            ScanObject();
-        }
-        protected virtual void ScanObject()
-        {
-
         }
     }
 }
