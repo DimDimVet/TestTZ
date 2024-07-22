@@ -4,30 +4,20 @@ namespace UI
 {
     public class UIExecutor : IUIExecutor
     {
-        //public Action OnInventary { get { return onInventary; } set { onInventary = value; } }
-        //private Action onInventary;
+        public Action OnLoadData { get { return onLoadData; } set { onLoadData = value; } }
+        private Action onLoadData;
+        public Action OnSaveData { get { return onSaveData; } set { onSaveData = value; } }
+        private Action onSaveData;
 
-        //public void SetReturnData(int _thisHash, int _receptionHash, DropData _dropData)
-        //{
-        //    onSetCollisionHash?.Invoke(_thisHash, _receptionHash, _dropData);
-        //}
+        public void LoadData()
+        {
+            onLoadData?.Invoke();
+        }
 
-        //public void Inventary(StatusCustomButton _status)
-        //{
-        //    switch (_status)
-        //    {
-        //        case StatusCustomButton.PointDown:
-        //            onInventary?.Invoke();
-        //            break;
-        //        case StatusCustomButton.PointUp:
-
-        //            break;
-
-        //        default:
-
-        //            break;
-        //    }
-        //}
+        public void SaveData()
+        {
+            onSaveData?.Invoke();
+        }
     }
 }
 

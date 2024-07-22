@@ -6,118 +6,84 @@ namespace StreamAsset
 {
     public class StreamAssetExecutor : IStreamAssetExecutor
     {
-        private string pathManualDirectory = "Manual";
-        private string nameManualFile = "Manual";
-
         private string pathDirectory = "";
         private string nameFile = "";
 
-        private JxonStructur[] listTxtData = new JxonStructur[0];
-        private JxonStructur tempStructure;
+        private LoadSaveStructur[] listData = new LoadSaveStructur[0];
 
-        //public JxonStructur SetText(JxonStructur _jxonStructur)
-        //{
-            
-        //    //
-        //    if (pathDirectory != _jxonStructur.PathDirectory || nameFile != _jxonStructur.NameFile || listTxtData.Length == 0)
-        //    {
-        //        pathDirectory = _jxonStructur.PathDirectory;
-        //        nameFile = _jxonStructur.NameFile;
-        //        tempStructure = _jxonStructur;
+        public Action<LoadSaveStructur> OnSetData { get { return onSetData; } set { onSetData = value; } }
+        private Action<LoadSaveStructur> onSetData;
 
-        //        listTxtData = LoadFile();
-        //        if (!listTxtData[0].StatusLoad) { return listTxtData[0]; }
-        //    }
-        //    else if (listTxtData.Length == 0)
-        //    {
-        //        pathDirectory = _jxonStructur.PathDirectory;
-        //        nameFile = _jxonStructur.NameFile;
-        //        tempStructure = _jxonStructur;
-
-        //        listTxtData = LoadFile();
-        //        if (!listTxtData[0].StatusLoad) { return listTxtData[0]; }
-        //    }
-        //    else
-        //    {
-        //        for (int i = 0; i < listTxtData.Length; i++)
-        //        {
-        //            if (listTxtData[i].NameObject == _jxonStructur.NameObject)
-        //            {
-        //                return listTxtData[i];
-        //            }
-        //        }
-        //    }
-        //    return _jxonStructur;
-        //}
-        //
-        //private JxonStructur[] LoadManualFile()
-        //{
-        //    string pathTxtDoc = Application.streamingAssetsPath + $"/{pathManualDirectory}/{nameManualFile}.txtProject";
-        //    string temp = "";
-        //    try
-        //    {
-        //        temp = File.ReadAllText(pathTxtDoc);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        JxonStructur[] templistTxtData = new JxonStructur[0];
-        //        templistTxtData[0].StatusLoad = false;
-        //        return templistTxtData;
-        //        //listTxtData = Creat(tempStructure, listTxtData);
-        //        //FirstSaveFile(listTxtData);//тормоз
-        //        //temp = File.ReadAllText(pathTxtDoc);
-        //    }
-        //    return DeserializeJSON(temp);
-        //}
-        private JxonStructur[] LoadFile()
+        public void LoadDataObject(LoadSaveStructur _textCollection)
         {
-            string temp = "";
-            string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.txtProject";
-            if (File.Exists(pathTxtDoc)) { temp=File.ReadAllText(pathTxtDoc); }
+            pathDirectory = _textCollection.PathDirectory;
+            nameFile = _textCollection.NameFile;
 
-                JxonStructur[] templistTxtData = new JxonStructur[0];
-                templistTxtData[0].StatusLoad = false;
-                return templistTxtData;
-                //listTxtData = Creat(tempStructure, listTxtData);
-                //FirstSaveFile(listTxtData);//тормоз
-                //temp = File.ReadAllText(pathTxtDoc);
-      
-            return DeserializeJSON(temp);
+            bool isContorlSaveTextCollection = true;
+            if (listData.Length == 0) { listData = InitList(); }
+            //
+            for (int i = 0; i < listData.Length; i++)
+            {
+                if (listData[i].NameObject == _textCollection.NameObject)
+                {
+                    isContorlSaveTextCollection = false;//переборка
+                    onSetData?.Invoke(listData[i]);
+                }
+            }
+            //
+            if (isContorlSaveTextCollection)
+            {
+                listData = Creat(_textCollection, listData);
+                SaveFile(listData);
+            }
         }
-        private JxonStructur[] DeserializeJSON(string _rezultString)
+        public void SaveDataObject(LoadSaveStructur _textCollection)
         {
-            JxonStructur[] textCollections = JsonConvert.FromJsonArray<JxonStructur>(_rezultString);
+            pathDirectory = _textCollection.PathDirectory;
+            nameFile = _textCollection.NameFile;
+
+            bool isContorlSaveTextCollection = true;
+            if (listData.Length == 0) { listData = InitList(); }
+            //
+            for (int i = 0; i < listData.Length; i++)
+            {
+                if (listData[i].NameObject == _textCollection.NameObject)
+                {
+                    isContorlSaveTextCollection = false;//переборка
+                    //onSetData?.Invoke(listData[i]);
+                    listData[i] = _textCollection;
+                    SaveFile(listData);
+                }
+            }
+            //
+            if (isContorlSaveTextCollection)
+            {
+                listData = Creat(_textCollection, listData);
+                SaveFile(listData);
+            }
+        }
+        private LoadSaveStructur[] InitList()
+        {
+            LoadSaveStructur[] templistData;
+            templistData = LoadFile();
+            return templistData;
+        }
+        private LoadSaveStructur[] LoadFile()
+        {
+            string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.jsonProject";
+            if (File.Exists(pathTxtDoc)) 
+            {
+                string temp = File.ReadAllText(pathTxtDoc);
+                return DeserializeJSON(temp);
+            }
+            return listData;
+        }
+        private LoadSaveStructur[] DeserializeJSON(string _rezultString)
+        {
+            LoadSaveStructur[] textCollections = JsonConvert.FromJson<LoadSaveStructur>(_rezultString);
             return textCollections;
         }
-        //
-        public void FirstSaveFile(JxonStructur _jxonStructur)
-        {
-            pathDirectory = _jxonStructur.PathDirectory;
-            nameFile = _jxonStructur.NameFile;
-
-            JxonStructur[] templistTxtData = new JxonStructur[0];
-            templistTxtData = Creat(_jxonStructur, templistTxtData);
-            string _rezultString = ConvertJSON(templistTxtData);
-
-            Directory.CreateDirectory(Application.streamingAssetsPath + $"/{pathDirectory}/");
-            string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.txtProject";
-            File.WriteAllText(pathTxtDoc, _rezultString);
-        }
-        private void SaveFile(JxonStructur[] _jxonStructur)
-        {
-            string _rezultString = ConvertJSON(_jxonStructur);
-
-            Directory.CreateDirectory(Application.streamingAssetsPath + $"/{pathDirectory}/");
-            string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.txtProject";
-            if (File.Exists(pathTxtDoc)) { File.WriteAllText(pathTxtDoc, _rezultString); }
-        }
-        private string ConvertJSON(JxonStructur[] _jxonStructur)
-        {
-            string temp = JsonConvert.ToJsonArray(_jxonStructur, true);
-            return temp;
-        }
-        //
-        public JxonStructur[] Creat(JxonStructur intObject, JxonStructur[] massivObject)
+        public LoadSaveStructur[] Creat(LoadSaveStructur intObject, LoadSaveStructur[] massivObject)
         {
             if (massivObject != null)
             {
@@ -128,9 +94,29 @@ namespace StreamAsset
             }
             else
             {
-                massivObject = new JxonStructur[] { intObject };
+                massivObject = new LoadSaveStructur[] { intObject };
                 return massivObject;
             }
+        }
+        //
+        private void SaveFile(LoadSaveStructur[] _textCollections)
+        {
+            string _rezultString = ConvertJSON(_textCollections);
+
+            Directory.CreateDirectory(Application.streamingAssetsPath + $"/{pathDirectory}/");
+            string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.jsonProject";
+            if (File.Exists(pathTxtDoc)) { File.WriteAllText(pathTxtDoc, _rezultString); }
+            else 
+            {
+                //File.Create(pathTxtDoc);
+                File.WriteAllText(pathTxtDoc, _rezultString);
+            };
+            
+        }
+        private string ConvertJSON(LoadSaveStructur[] _textCollections)
+        {
+            string temp = JsonConvert.ToJson(_textCollections, true);
+            return temp;
         }
     }
 }
