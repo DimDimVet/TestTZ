@@ -1,5 +1,4 @@
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using System;
 using UI;
 using UnityEngine;
@@ -27,7 +26,7 @@ namespace Anims
         private Vector3 baseScaleButton, baseMoveButton;
         private float buttonScale, buttonMove;
         private bool isMove = false;
-        private bool isBreak = false;
+
         private void OnEnable()
         {
             customButton.OnExecutorButton += PointEnter;

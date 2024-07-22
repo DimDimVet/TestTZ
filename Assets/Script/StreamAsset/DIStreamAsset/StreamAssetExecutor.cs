@@ -108,7 +108,6 @@ namespace StreamAsset
             if (File.Exists(pathTxtDoc)) { File.WriteAllText(pathTxtDoc, _rezultString); }
             else 
             {
-                //File.Create(pathTxtDoc);
                 File.WriteAllText(pathTxtDoc, _rezultString);
             };
             

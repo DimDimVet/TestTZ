@@ -1,3 +1,4 @@
+using Drop;
 using System;
 
 namespace UI
@@ -8,6 +9,10 @@ namespace UI
         private Action onLoadData;
         public Action OnSaveData { get { return onSaveData; } set { onSaveData = value; } }
         private Action onSaveData;
+        public Func<TypeDrop[]> OnGetCollectionInventary { get { return onGetCollectionInventary; } set { onGetCollectionInventary = value; } }
+        private Func<TypeDrop[]> onGetCollectionInventary;
+        public Action<TypeDrop[]> OnSetLoadDrop { get { return onSetLoadDrop; } set { onSetLoadDrop = value; } }
+        private Action<TypeDrop[]> onSetLoadDrop;
 
         public void LoadData()
         {
@@ -17,6 +22,16 @@ namespace UI
         public void SaveData()
         {
             onSaveData?.Invoke();
+        }
+
+        public TypeDrop[] GetCollectionInventary()
+        {
+            return onGetCollectionInventary?.Invoke();
+        }
+
+        public void SetLoadDrop(TypeDrop[] dropDates)
+        {
+            onSetLoadDrop?.Invoke(dropDates);
         }
     }
 }

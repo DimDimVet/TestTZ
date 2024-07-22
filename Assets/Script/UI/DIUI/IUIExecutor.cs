@@ -1,3 +1,4 @@
+using Drop;
 using System;
 
 namespace UI
@@ -8,6 +9,10 @@ namespace UI
         Action OnSaveData { get; set; }
         void LoadData();
         void SaveData();
+        Func<TypeDrop[]> OnGetCollectionInventary { get; set; }
+        TypeDrop[] GetCollectionInventary();
+        void SetLoadDrop(TypeDrop[] dropDates);
+        Action<TypeDrop[]> OnSetLoadDrop { get; set; }
     }
 }
 

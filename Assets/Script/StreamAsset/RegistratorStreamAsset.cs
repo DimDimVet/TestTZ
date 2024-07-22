@@ -1,4 +1,7 @@
+using Drop;
 using RegistratorObject;
+using System;
+using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -45,13 +48,14 @@ namespace StreamAsset
         {
             loadSaveStructur = new LoadSaveStructur
             {
-                PathDirectory= pathDirectory,
-                NameFile= nameFile, 
+                PathDirectory = pathDirectory,
+                NameFile = nameFile,
                 NameObject = this.gameObject.name,
                 GameObject = this.gameObject,
                 Position = this.gameObject.transform.position,
                 Rotation = this.gameObject.transform.rotation,
-                Scale = this.gameObject.transform.localScale
+                Scale = this.gameObject.transform.localScale,
+                DropDatas = GetCollectionInventary(),
             };
             streamAssetExecutor.SaveDataObject(loadSaveStructur);
         }
@@ -70,8 +74,13 @@ namespace StreamAsset
             Vector3 savePosition = saveStructur.Position;
             Quaternion saveRotate=saveStructur.Rotation;
             Vector3 saveScale=saveStructur.Scale;
+            uiExecutor.SetLoadDrop(saveStructur.DropDatas);
             this.gameObject.transform.position = savePosition;
-            Debug.Log(saveStructur.NameObject);
+        }
+        private TypeDrop[] GetCollectionInventary()
+        {
+            TypeDrop[] tempMassiv = uiExecutor.GetCollectionInventary();
+            return tempMassiv;
         }
         void Update()
         {
