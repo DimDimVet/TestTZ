@@ -1942,6 +1942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741661979}
   - component: {fileID: 741661980}
+  - component: {fileID: 741661981}
   m_Layer: 0
   m_Name: StreamAsset
   m_TagString: Untagged
@@ -1977,7 +1978,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveButton: {fileID: 780874347}
-  loadButton: {fileID: 799889900}
+--- !u!114 &741661981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741661978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92fdb6157dc4e6489e06917d36b02a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebootSceneButton: {fileID: 799889900}
 --- !u!1 &746476178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,7 +2352,7 @@ GameObject:
   - component: {fileID: 799889900}
   - component: {fileID: 799889903}
   m_Layer: 5
-  m_Name: InventaryLoadButton
+  m_Name: InventaryReBootButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3032,18 +3045,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 47
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 2
     m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u0417\u0432\u0433\u0440\u0443\u0437\u0438\u0442\u044C"
+  m_Text: "\u041F\u0435\u0440\u0435\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441\u0446\u0435\u043D\u0443"
 --- !u!222 &984659063
 CanvasRenderer:
   m_ObjectHideFlags: 0

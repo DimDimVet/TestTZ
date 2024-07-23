@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Drop;
 using System;
 
@@ -13,6 +14,8 @@ namespace UI
         TypeDrop[] GetCollectionInventary();
         void SetLoadDrop(TypeDrop[] dropDates);
         Action<TypeDrop[]> OnSetLoadDrop { get; set; }
+        Action OnReBootScene { get; set; }
+        void ReBoot(int _currentScene);
     }
 }
 

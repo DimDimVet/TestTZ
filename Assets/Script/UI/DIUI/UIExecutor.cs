@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
 using Drop;
 using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -13,25 +16,29 @@ namespace UI
         private Func<TypeDrop[]> onGetCollectionInventary;
         public Action<TypeDrop[]> OnSetLoadDrop { get { return onSetLoadDrop; } set { onSetLoadDrop = value; } }
         private Action<TypeDrop[]> onSetLoadDrop;
+        public Action OnReBootScene { get { return onReBootScene; } set { onReBootScene = value; } }
+        private Action onReBootScene;
 
         public void LoadData()
         {
             onLoadData?.Invoke();
         }
-
         public void SaveData()
         {
             onSaveData?.Invoke();
         }
-
         public TypeDrop[] GetCollectionInventary()
         {
             return onGetCollectionInventary?.Invoke();
         }
-
         public void SetLoadDrop(TypeDrop[] dropDates)
         {
             onSetLoadDrop?.Invoke(dropDates);
+        }
+        public void ReBoot(int _currentScene)
+        {
+            SceneManager.LoadSceneAsync(_currentScene);
+            LoadData();
         }
     }
 }

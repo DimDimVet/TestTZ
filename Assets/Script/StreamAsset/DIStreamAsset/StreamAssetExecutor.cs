@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.IO;
 using UnityEngine;
@@ -14,13 +15,13 @@ namespace StreamAsset
         public Action<LoadSaveStructur> OnSetData { get { return onSetData; } set { onSetData = value; } }
         private Action<LoadSaveStructur> onSetData;
 
-        public void LoadDataObject(LoadSaveStructur _textCollection)
+        public async UniTask LoadDataObject(LoadSaveStructur _textCollection)
         {
             pathDirectory = _textCollection.PathDirectory;
             nameFile = _textCollection.NameFile;
 
             bool isContorlSaveTextCollection = true;
-            if (listData.Length == 0) { listData = InitList(); }
+            if (listData.Length == 0) { listData = await InitList(); }
             //
             for (int i = 0; i < listData.Length; i++)
             {
@@ -34,16 +35,16 @@ namespace StreamAsset
             if (isContorlSaveTextCollection)
             {
                 listData = Creat(_textCollection, listData);
-                SaveFile(listData);
+                await SaveFile(listData);
             }
         }
-        public void SaveDataObject(LoadSaveStructur _textCollection)
+        public async UniTask SaveDataObject(LoadSaveStructur _textCollection)
         {
             pathDirectory = _textCollection.PathDirectory;
             nameFile = _textCollection.NameFile;
 
             bool isContorlSaveTextCollection = true;
-            if (listData.Length == 0) { listData = InitList(); }
+            if (listData.Length == 0) { listData =await InitList(); }
             //
             for (int i = 0; i < listData.Length; i++)
             {
@@ -52,28 +53,29 @@ namespace StreamAsset
                     isContorlSaveTextCollection = false;//переборка
                     //onSetData?.Invoke(listData[i]);
                     listData[i] = _textCollection;
-                    SaveFile(listData);
+                    await SaveFile(listData);
                 }
             }
             //
             if (isContorlSaveTextCollection)
             {
                 listData = Creat(_textCollection, listData);
-                SaveFile(listData);
+                await SaveFile(listData);
             }
         }
-        private LoadSaveStructur[] InitList()
+        private async UniTask<LoadSaveStructur[]> InitList()
         {
             LoadSaveStructur[] templistData;
-            templistData = LoadFile();
+            templistData = await LoadFile();
             return templistData;
         }
-        private LoadSaveStructur[] LoadFile()
+        private async UniTask<LoadSaveStructur[]> LoadFile()
         {
             string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.jsonProject";
-            if (File.Exists(pathTxtDoc)) 
+            if (File.Exists(pathTxtDoc))
             {
                 string temp = File.ReadAllText(pathTxtDoc);
+                await UniTask.Yield();
                 return DeserializeJSON(temp);
             }
             return listData;
@@ -99,18 +101,21 @@ namespace StreamAsset
             }
         }
         //
-        private void SaveFile(LoadSaveStructur[] _textCollections)
+        private async UniTask SaveFile(LoadSaveStructur[] _textCollections)
         {
             string _rezultString = ConvertJSON(_textCollections);
 
             Directory.CreateDirectory(Application.streamingAssetsPath + $"/{pathDirectory}/");
+            await UniTask.Yield();
             string pathTxtDoc = Application.streamingAssetsPath + $"/{pathDirectory}/{nameFile}.jsonProject";
+            await UniTask.Yield();
             if (File.Exists(pathTxtDoc)) { File.WriteAllText(pathTxtDoc, _rezultString); }
-            else 
+            else
             {
                 File.WriteAllText(pathTxtDoc, _rezultString);
+                await UniTask.Yield();
             };
-            
+
         }
         private string ConvertJSON(LoadSaveStructur[] _textCollections)
         {

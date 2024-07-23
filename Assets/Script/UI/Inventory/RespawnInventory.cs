@@ -13,7 +13,7 @@ namespace UI
         [SerializeField] private Transform inventaryUIObject;
         private GameObject tempObject;
         private Construction player;
-        private TypeDrop[] collectionInventary=new TypeDrop[0];
+        private DropData[] collectionInventary=new DropData[0];
         //
         private IRegistrator registrator;
         private IDropExecutor dropExecutor;
@@ -41,18 +41,42 @@ namespace UI
 
         private void RespawnLoadDrop(TypeDrop[] _drop)
         {
+            if (collectionInventary != null)
+            {
+                for(int i = 0; i < collectionInventary.Length; i++)
+                {
+                    switch (collectionInventary[i].TypeDrop)
+                    {
+                        case TypeDrop.Trash:
+                            poolTrashInvertoryExecutor.ReternObject(collectionInventary[i].HashInventory);
+                            break;
+                        case TypeDrop.Moneta:
+                            poolTrashInvertoryExecutor.ReternObject(collectionInventary[i].HashInventory);
+                            break;
+
+                        default:
+
+                            break;
+                    }
+                }
+                Array.Clear(collectionInventary,0, collectionInventary.Length); 
+            }
+            //
+            DropData drop = new DropData();
             for (int i = 0; i < _drop.Length; i++)
             {
                 switch (_drop[i])
                 {
                     case TypeDrop.Trash:
                         tempObject = poolTrashInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
-                        collectionInventary = Creat(TypeDrop.Trash, collectionInventary);
+                        drop.TypeDrop = _drop[i];
+                        collectionInventary = CreatDropData(drop, collectionInventary);
                         tempObject.transform.SetParent(inventaryUIObject);
                         break;
                     case TypeDrop.Moneta:
                         tempObject = poolMonetaInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
-                        collectionInventary = Creat(TypeDrop.Moneta, collectionInventary);
+                        drop.TypeDrop = _drop[i];
+                        collectionInventary = CreatDropData(drop, collectionInventary);
                         tempObject.transform.SetParent(inventaryUIObject);
                         break;
 
@@ -76,12 +100,14 @@ namespace UI
             {
                 case TypeDrop.Trash:
                     tempObject = poolTrashInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
-                    collectionInventary = Creat(TypeDrop.Trash, collectionInventary);
+                    _dropData.HashInventory = tempObject.GetHashCode();
+                    collectionInventary = CreatDropData(_dropData, collectionInventary);
                     tempObject.transform.SetParent(inventaryUIObject);
                     break;
                 case TypeDrop.Moneta:
                     tempObject = poolMonetaInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
-                    collectionInventary = Creat(TypeDrop.Moneta, collectionInventary);
+                    _dropData.HashInventory = tempObject.GetHashCode();
+                    collectionInventary = CreatDropData(_dropData, collectionInventary);
                     tempObject.transform.SetParent(inventaryUIObject);
                     break;
 
@@ -96,9 +122,14 @@ namespace UI
         }
         private TypeDrop[] GetCollectionInventary()
         {
-            return collectionInventary;
+            TypeDrop[] temp=new TypeDrop[collectionInventary.Length];
+            for (int i = 0; i < collectionInventary.Length; i++)
+            {
+                temp[i] = collectionInventary[i].TypeDrop;
+            }
+            return temp;
         }
-        public TypeDrop[] Creat(TypeDrop intObject, TypeDrop[] massivObject)
+        public DropData[] CreatDropData(DropData intObject, DropData[] massivObject)
         {
             if (massivObject != null)
             {
@@ -109,7 +140,7 @@ namespace UI
             }
             else
             {
-                massivObject = new TypeDrop[] { intObject };
+                massivObject = new DropData[] { intObject };
                 return massivObject;
             }
         }

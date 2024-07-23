@@ -6,8 +6,6 @@ namespace UI
     public class StreamAssetWrapper : MonoBehaviour
     {
         [SerializeField] private CustomButton saveButton;
-        [SerializeField] private CustomButton loadButton;
-
         private IUIExecutor uiExecutor;
 
         [Inject]
@@ -18,15 +16,6 @@ namespace UI
         private void OnEnable()
         {
             saveButton.OnExecutorButton += SaveButton;
-            loadButton.OnExecutorButton += LoadButton;
-        }
-
-        private void LoadButton(int _hash, StatusCustomButton _status)
-        {
-            if (_status == StatusCustomButton.PointDown)
-            {
-                uiExecutor.LoadData();
-            }
         }
 
         private void SaveButton(int _hash, StatusCustomButton _status)
@@ -36,7 +25,5 @@ namespace UI
                 uiExecutor.SaveData();
             }
         }
-
-
     }
 }
