@@ -20,10 +20,10 @@ namespace Anims
         [SerializeField][Range(0, 10)] protected float buttonMoveDuration = 1f;
         protected float buttonMoveNorm = 1f;
 
-        private Sequence listTweenScaleButton,listTweenMoveButton;
+        private Sequence listTweenScaleButton, listTweenMoveButton;
         private Vector3 baseScaleButton, baseMoveButton;
         private float buttonScale, buttonMove;
-        private bool isMove=false;
+        private bool isMove = false;
         private void OnEnable()
         {
             customButton.OnExecutorButton += PointEnter;
@@ -38,7 +38,7 @@ namespace Anims
             baseScaleButton = customButton.transform.localScale;
             buttonScale = buttonScaleNorm;
             //
-            baseMoveButton=customButton.transform.position;
+            baseMoveButton = customButton.transform.position;
             buttonMove = buttonMoveNorm;
         }
         private void SetTween()
@@ -61,12 +61,10 @@ namespace Anims
             if (customButton != null)
             {
                 listTweenMoveButton.Append(customButton.transform.DOMoveY(baseMoveButton.y * buttonMove, buttonMoveDuration));
-                //listTweenCustomButton.Join(customButton.transform.DOScaleX(baseScaleButton.x * buttonScale, buttonDuration));
-                listTweenMoveButton.AppendCallback(() => 
+                listTweenMoveButton.AppendCallback(() =>
                 {
                     listTweenMoveButton.Kill();
                     onExecutorCloseBotton?.Invoke(isMove);
-                    //isMove = false;
                 });
             }
         }
@@ -93,9 +91,6 @@ namespace Anims
                     else { isMove = false; buttonMove = buttonMoveNorm; }
 
                     SetMoveTween();
-                    break;
-                case StatusCustomButton.PointUp:
-
                     break;
 
                 default:

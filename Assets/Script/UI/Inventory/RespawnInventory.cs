@@ -2,7 +2,6 @@
 using Pools;
 using RegistratorObject;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +12,7 @@ namespace UI
         [SerializeField] private Transform inventaryUIObject;
         private GameObject tempObject;
         private Construction player;
-        private DropData[] collectionInventary=new DropData[0];
+        private DropData[] collectionInventary = new DropData[0];
         //
         private IRegistrator registrator;
         private IDropExecutor dropExecutor;
@@ -22,7 +21,7 @@ namespace UI
         private IPoolTrashInvertoryExecutor poolTrashInvertoryExecutor;
 
         [Inject]
-        public void Init(IRegistrator _registrator,IDropExecutor _dropExecutor,IUIExecutor _uiExecutor, 
+        public void Init(IRegistrator _registrator, IDropExecutor _dropExecutor, IUIExecutor _uiExecutor,
                          IPoolMonetaInvertoryExecutor _poolMonetaInvertoryExecutor,
                          IPoolTrashInvertoryExecutor _poolTrashInvertoryExecutor)
         {
@@ -43,7 +42,7 @@ namespace UI
         {
             if (collectionInventary != null)
             {
-                for(int i = 0; i < collectionInventary.Length; i++)
+                for (int i = 0; i < collectionInventary.Length; i++)
                 {
                     switch (collectionInventary[i].TypeDrop)
                     {
@@ -51,7 +50,7 @@ namespace UI
                             poolTrashInvertoryExecutor.ReternObject(collectionInventary[i].HashInventory);
                             break;
                         case TypeDrop.Moneta:
-                            poolTrashInvertoryExecutor.ReternObject(collectionInventary[i].HashInventory);
+                            poolMonetaInvertoryExecutor.ReternObject(collectionInventary[i].HashInventory);
                             break;
 
                         default:
@@ -59,7 +58,7 @@ namespace UI
                             break;
                     }
                 }
-                Array.Clear(collectionInventary,0, collectionInventary.Length); 
+                Array.Clear(collectionInventary, 0, collectionInventary.Length);
             }
             //
             DropData drop = new DropData();
@@ -70,12 +69,14 @@ namespace UI
                     case TypeDrop.Trash:
                         tempObject = poolTrashInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
                         drop.TypeDrop = _drop[i];
+                        drop.HashInventory = tempObject.GetHashCode();
                         collectionInventary = CreatDropData(drop, collectionInventary);
                         tempObject.transform.SetParent(inventaryUIObject);
                         break;
                     case TypeDrop.Moneta:
                         tempObject = poolMonetaInvertoryExecutor.GetObject(gameObject.transform.localScale.x, inventaryUIObject);
                         drop.TypeDrop = _drop[i];
+                        drop.HashInventory = tempObject.GetHashCode();
                         collectionInventary = CreatDropData(drop, collectionInventary);
                         tempObject.transform.SetParent(inventaryUIObject);
                         break;
@@ -85,11 +86,6 @@ namespace UI
                         break;
                 }
             }
-        }
-
-        void Start()
-        {
-            
         }
         private void RespawnInvertoryObject(int _thisHash, int _receptionHash, DropData _dropData)
         {
@@ -122,7 +118,7 @@ namespace UI
         }
         private TypeDrop[] GetCollectionInventary()
         {
-            TypeDrop[] temp=new TypeDrop[collectionInventary.Length];
+            TypeDrop[] temp = new TypeDrop[collectionInventary.Length];
             for (int i = 0; i < collectionInventary.Length; i++)
             {
                 temp[i] = collectionInventary[i].TypeDrop;

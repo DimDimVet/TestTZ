@@ -28,7 +28,6 @@ namespace Pools
                 return pool.GetObjectFabric(containerTransform);
             }
         }
-
         public void ReternObject(int _hash)
         {
             if (pool != null) { pool.ReternObject(_hash); }

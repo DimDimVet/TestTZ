@@ -1,7 +1,5 @@
-using Cysharp.Threading.Tasks;
 using Drop;
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI

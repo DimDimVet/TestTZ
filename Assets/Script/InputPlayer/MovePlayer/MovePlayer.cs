@@ -1,4 +1,3 @@
-using DG.Tweening;
 using RegistratorObject;
 using UnityEngine;
 using Zenject;
@@ -82,13 +81,13 @@ namespace Input
                         if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                         rbThisObject.velocity = transform.right * moveSpeed;
                     }
-                    if (inputs.Move.x < 0)
+                    else if (inputs.Move.x < 0)
                     {
                         if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }
                         rbThisObject.velocity = -transform.right * moveSpeed;
                     }
+                    else { rbThisObject.velocity = new Vector2 {x=0,y= rbThisObject.velocity.y }; }
                 }
-
             }
             else
             {
@@ -98,13 +97,12 @@ namespace Input
                     if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                     rbThisObject.velocity = transform.right * jampSpeed;
                 }
-                if (inputs.Move.x < 0 && isMoveTrigger)
+                else if (inputs.Move.x < 0 && isMoveTrigger)
                 {
                     isMoveTrigger = false;
                     if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }
                     rbThisObject.velocity = -transform.right * jampSpeed;
                 }
-
             }
 
             if (inputs.Move.x > 0 && isMoveTrigger && inputs.Jamp > 0)
@@ -113,7 +111,7 @@ namespace Input
                 if (scale.x == -1 && inputs.Move.x > 0) { Flip(); }
                 rbThisObject.velocity = new Vector2(1, 1) * jampSpeed;
             }
-            if (inputs.Move.x < 0 && isMoveTrigger && inputs.Jamp > 0)
+            else if (inputs.Move.x < 0 && isMoveTrigger && inputs.Jamp > 0)
             {
                 isMoveTrigger = false;
                 if (scale.x == 1 && inputs.Move.x < 0) { Flip(); }

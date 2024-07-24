@@ -32,7 +32,7 @@ namespace Input
                     inputActions.KeyMap.WASD.performed += contex => { inputData.Move = contex.ReadValue<Vector2>(); MoveButton(inputData); };
                     inputActions.KeyMap.WASD.canceled += contex => { inputData.Move = contex.ReadValue<Vector2>(); MoveButton(inputData); };
 
-                    inputActions.KeyMap.Look.started += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); MoveMouse(inputData);};
+                    inputActions.KeyMap.Look.started += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); MoveMouse(inputData); };
                     inputActions.KeyMap.Look.performed += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
                     inputActions.KeyMap.Look.canceled += contex => { inputData.Mouse = contex.ReadValue<Vector2>(); inputData.MousePosition = Mouse.current.position.ReadValue(); };
 

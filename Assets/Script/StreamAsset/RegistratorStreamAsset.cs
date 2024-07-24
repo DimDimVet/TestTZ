@@ -1,7 +1,5 @@
 using Drop;
 using RegistratorObject;
-using System;
-using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -72,8 +70,8 @@ namespace StreamAsset
         private void SetData(LoadSaveStructur saveStructur)
         {
             Vector3 savePosition = saveStructur.Position;
-            Quaternion saveRotate=saveStructur.Rotation;
-            Vector3 saveScale=saveStructur.Scale;
+            Quaternion saveRotate = saveStructur.Rotation;
+            Vector3 saveScale = saveStructur.Scale;
             uiExecutor.SetLoadDrop(saveStructur.DropDatas);
             this.gameObject.transform.position = savePosition;
         }
@@ -86,15 +84,6 @@ namespace StreamAsset
         {
             if (isStopClass) { return; }
             if (!isRun) { SetClass(); }
-            RunUpdate();
-        }
-        private void RunUpdate()
-        {
-
-        }
-        private void OnDisable()
-        {
-
         }
     }
 }

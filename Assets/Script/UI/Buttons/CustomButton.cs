@@ -12,7 +12,7 @@ namespace UI
         private int thisHash;
         protected override void Start()
         {
-            thisHash=this.gameObject.GetHashCode();
+            thisHash = this.gameObject.GetHashCode();
         }
         public override void OnPointerEnter(PointerEventData eventData)
         {

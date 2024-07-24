@@ -64,7 +64,6 @@ namespace Anims
             if (customButton != null)
             {
                 listTweenMoveButton.Append(customButton.transform.DOMoveY(baseMoveButton.y * buttonMove, buttonMoveDuration));
-                //listTweenCustomButton.Join(customButton.transform.DOScaleX(baseScaleButton.x * buttonScale, buttonDuration));
                 listTweenMoveButton.AppendCallback(() =>
                 {
                     listTweenMoveButton.Kill();
@@ -95,9 +94,6 @@ namespace Anims
                     else { isMove = false; buttonMove = buttonMoveNorm; }
 
                     SetMoveTween();
-                    break;
-                case StatusCustomButton.PointUp:
-
                     break;
 
                 default:

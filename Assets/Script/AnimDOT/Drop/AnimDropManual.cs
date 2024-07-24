@@ -29,7 +29,7 @@ namespace Anims
         private void SetSettings()
         {
             thisHash = this.gameObject.GetHashCode();
-            manualObject.localScale= manualObject.localScale * 0;
+            manualObject.localScale = manualObject.localScale * 0;
 
             panelScale = scaleNorm;
         }
@@ -60,12 +60,6 @@ namespace Anims
                     listTweenCustomButton.Pause();
                     panelScale = scaleNorm;
                     SetTween();
-                    break;
-                case StatusCustomButton.PointDown:
-
-                    break;
-                case StatusCustomButton.PointUp:
-
                     break;
 
                 default:

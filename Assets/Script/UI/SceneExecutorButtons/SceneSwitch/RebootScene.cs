@@ -15,10 +15,6 @@ namespace UI
         {
             uiExecutor = _uiExecutor;
         }
-        private void Awake()
-        {
-            
-        }
         private void OnEnable()
         {
             uiExecutor.LoadData();
@@ -29,7 +25,6 @@ namespace UI
             if (_status == StatusCustomButton.PointDown)
             {
                 int currentScene = SceneManager.GetActiveScene().buildIndex;
-                //uiExecutor.ReBoot(currentScene);
                 uiExecutor.LoadData();
             }
         }

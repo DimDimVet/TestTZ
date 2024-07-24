@@ -51,7 +51,6 @@ namespace StreamAsset
                 if (listData[i].NameObject == _textCollection.NameObject)
                 {
                     isContorlSaveTextCollection = false;//переборка
-                    //onSetData?.Invoke(listData[i]);
                     listData[i] = _textCollection;
                     await SaveFile(listData);
                 }

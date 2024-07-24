@@ -46,7 +46,7 @@ namespace Anims
                 listTweenDrop.Append(drop.transform.DOScaleY(drop.transform.localScale.y, dropDuration).SetEase(Ease.Linear));
                 listTweenDrop.Join(drop.transform.DOScaleX(drop.transform.localScale.x, dropDuration).SetEase(Ease.Linear));
 
-                listTweenDrop.AppendCallback(() =>{});
+                listTweenDrop.AppendCallback(() => { });
                 listTweenDrop.SetLoops(-1, LoopType.Restart);
             }
         }
@@ -58,5 +58,6 @@ namespace Anims
                 listTweenDrop.Pause();
             }
         }
+        
     }
 }

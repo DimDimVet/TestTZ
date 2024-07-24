@@ -9,5 +9,4 @@ public class DropSettings : ScriptableObject
     [Header("Цена"), Range(0, 100)]
     public int Price = 50;
     public TypeDrop TypeDrop = TypeDrop.Null;
-
 }

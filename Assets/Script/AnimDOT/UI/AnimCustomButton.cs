@@ -58,12 +58,6 @@ namespace Anims
                     buttonScale = buttonScaleNorm;
                     SetTween();
                     break;
-                case StatusCustomButton.PointDown:
-
-                    break;
-                case StatusCustomButton.PointUp:
-
-                    break;
 
                 default:
 

@@ -22,13 +22,9 @@ namespace Drop
             registrator = _registrator;
             dropExecutor = _dropExecutor;
         }
-        private void OnEnable()
-        {
-
-        }
         void Start()
         {
-            thisHash=this.gameObject.GetHashCode();
+            thisHash = this.gameObject.GetHashCode();
             SetClass();
             SetSettings();
         }

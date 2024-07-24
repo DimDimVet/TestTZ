@@ -14,11 +14,11 @@ namespace Drop
         {
             dropData = new DropData
             {
-                Hash= thisHash,
+                Hash = thisHash,
                 Trash = dropSettings.Trash,
                 Price = dropSettings.Price,
                 TypeObject = TypeObject.Drop,
-                TypeDrop= dropSettings.TypeDrop,
+                TypeDrop = dropSettings.TypeDrop,
             };
         }
         private void OnTriggerEnter2D(Collider2D collision)

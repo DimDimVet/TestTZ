@@ -497,7 +497,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C"
+  m_Text: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C"
 --- !u!222 &199916375
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ Transform:
   m_GameObject: {fileID: 569729488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.7, y: 3.7999992, z: 0}
+  m_LocalPosition: {x: 44.4, y: 0.57, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2214,7 +2214,7 @@ GameObject:
   - component: {fileID: 780874347}
   - component: {fileID: 780874350}
   m_Layer: 5
-  m_Name: InventarySaveButton
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2352,7 +2352,7 @@ GameObject:
   - component: {fileID: 799889900}
   - component: {fileID: 799889903}
   m_Layer: 5
-  m_Name: InventaryReBootButton
+  m_Name: ReBootButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2724,7 +2724,7 @@ Transform:
   m_GameObject: {fileID: 964992704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.8, y: 7.299999, z: 0}
+  m_LocalPosition: {x: 11.1, y: 8.04, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3668,11 +3668,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customButton: {fileID: 1288282642}
-  buttonScaleNorm: 1.1
+  buttonScaleNorm: 1
   buttonScalePoint: 1.5
-  buttonScaleDuration: 1
+  buttonScaleDuration: 0.3
   buttonMovePoint: -1
-  buttonMoveDuration: 0.3
+  buttonMoveDuration: 0.5
 --- !u!1 &1403395792
 GameObject:
   m_ObjectHideFlags: 3
@@ -4680,7 +4680,7 @@ Transform:
   m_GameObject: {fileID: 1808367311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.4, y: 2.2999992, z: 0}
+  m_LocalPosition: {x: 53.9, y: -3.35, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5117,7 +5117,7 @@ Transform:
   m_GameObject: {fileID: 1888083810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.3, y: 7.299999, z: 0}
+  m_LocalPosition: {x: 34.77, y: 4.37, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

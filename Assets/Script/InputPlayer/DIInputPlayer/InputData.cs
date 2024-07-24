@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace Input
 {
     public struct InputData

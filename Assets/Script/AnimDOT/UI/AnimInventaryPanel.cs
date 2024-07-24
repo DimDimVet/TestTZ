@@ -1,5 +1,4 @@
 using DG.Tweening;
-using UI;
 using UnityEngine;
 
 namespace Anims
@@ -15,13 +14,12 @@ namespace Anims
 
         private Transform thisTransform;
         private Sequence listTweenMovePanel;
-        //private int thisHash;
-        private Vector3  baseMovePanel;
-        private bool isMove=false;
+        private Vector3 baseMovePanel;
+        private bool isMove = false;
         private void OnEnable()
         {
             openButton.OnExecutorOpenBotton += OpenPointEnter;
-            closeButton.OnExecutorCloseBotton += ClosePointEnter;    
+            closeButton.OnExecutorCloseBotton += ClosePointEnter;
         }
         void Start()
         {
@@ -30,9 +28,7 @@ namespace Anims
         }
         private void SetSettings()
         {
-            //thisHash = this.gameObject.GetHashCode();
-            thisTransform=this.gameObject.transform;
-            //
+            thisTransform = this.gameObject.transform;
             panelMoveNorm = thisTransform.transform.position;
             baseMovePanel = panelMoveNorm;
         }
@@ -43,8 +39,7 @@ namespace Anims
             if (thisTransform != null)
             {
                 listTweenMovePanel.Append(thisTransform.transform.DOMoveX(baseMovePanel.x, panelMoveDuration));
-                //listTweenCustomButton.Join(customButton.transform.DOScaleX(baseScaleButton.x * buttonScale, buttonDuration));
-                listTweenMovePanel.AppendCallback(() => 
+                listTweenMovePanel.AppendCallback(() =>
                 {
                     listTweenMovePanel.Kill();
                 });
@@ -53,14 +48,13 @@ namespace Anims
         private void OpenPointEnter(bool _isStatus)
         {
             isMove = _isStatus;
-            if (isMove) 
+            if (isMove)
             {
-                
                 baseMovePanel = panelPositionEnd;
                 SetMoveTween();
             }
         }
-        private void ClosePointEnter( bool _isStatus)
+        private void ClosePointEnter(bool _isStatus)
         {
             isMove = _isStatus;
             if (isMove)

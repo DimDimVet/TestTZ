@@ -1,5 +1,3 @@
-using Drop;
-using UI;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +5,7 @@ namespace RegistratorObject
 {
     public class Registrator : MonoBehaviour
     {
-        [SerializeField] private TypeObject type= TypeObject.Other;
+        [SerializeField] private TypeObject type = TypeObject.Other;
         [SerializeField] private int thisHash;
         private IRegistrator registrator;
         [Inject]
@@ -25,17 +23,9 @@ namespace RegistratorObject
                 NameObject = gameObject.name,
                 TypeObject = type,
                 Object = gameObject,
-                //Manual= Manual(),
             };
             registrator.SetData(element);
         }
-        //private string Manual()
-        //{
-        //    BaseTextRegistrator baseTextRegistrator=this.gameObject.GetComponent<BaseTextRegistrator>();
-        //    if(baseTextRegistrator!=null)
-        //    { return baseTextRegistrator.GetTxt(); }
-        //    return "";
-        //}
     }
 }
 

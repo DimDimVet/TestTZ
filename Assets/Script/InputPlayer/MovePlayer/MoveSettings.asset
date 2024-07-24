@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: MoveSettings
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  JampSpeed: 9.48
-  TagGnd: Gnd
+  JampSpeed: 12
   GndDistance: 0.1
   IsUpDate: 0
